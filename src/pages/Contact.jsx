@@ -7,7 +7,6 @@ import {
   CheckCircle,
   AlertCircle,
   Clock,
-  Sparkles,
   ExternalLink,
 } from 'lucide-react';
 import InstagramIcon from '../components/InstagramIcon';
@@ -33,7 +32,7 @@ export default function Contact() {
     serviceInterest:
       prefilledPackage || prefilledService || 'Website Design & Development',
     message: prefilledPackage
-      ? `Hi TC Web & Studio team, I am interested in getting started with the "${prefilledPackage}" package. Here are some details about my project:`
+      ? `Interested in the "${prefilledPackage}" package.`
       : '',
   });
 
@@ -68,7 +67,7 @@ export default function Contact() {
       errors.email = 'Please enter a valid email address.';
     }
     if (!formData.serviceInterest.trim()) {
-      errors.serviceInterest = 'Please select a service of interest.';
+      errors.serviceInterest = 'Please select a service.';
     }
     if (!formData.message.trim() || formData.message.trim().length < 10) {
       errors.message = 'Please provide a message with at least 10 characters.';
@@ -100,7 +99,7 @@ export default function Contact() {
       const res = await api.submitContact(formData);
       setSuccessMessage(
         res.message ||
-          'Thank you for reaching out! Your inquiry has been received by TC Web & Studio. Our team will review your project details and get back to you within 24-48 business hours.'
+          'Thank you for reaching out! We have received your inquiry and will respond within 24-48 business hours.'
       );
       setFormData({
         name: '',
@@ -113,7 +112,7 @@ export default function Contact() {
     } catch (err) {
       console.error('Contact submit error:', err);
       setErrorMessage(
-        err.message || 'Unable to submit your message right now. Please try again later.'
+        err.message || 'Unable to submit your message right now. Please try again.'
       );
     } finally {
       setSubmitting(false);
@@ -123,37 +122,32 @@ export default function Contact() {
   const hasInstagram = Boolean(settings.instagramUrl && settings.instagramUrl.trim());
 
   return (
-    <div className="contact-page" style={{ paddingTop: '7.5rem', paddingBottom: '6rem' }}>
+    <div className="contact-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <span className="section-tag">
-            <Mail size={14} /> Get in Touch
-          </span>
-          <h1 className="section-title">
-            Let's Build Something <span className="gradient-text">Exceptional</span>
-          </h1>
+          <span className="section-tag">Contact</span>
+          <h1 className="section-title">Get in Touch</h1>
           <p className="section-description">
-            Tell us about your project, your brand goals, or the specific service package you
-            are interested in. Our team responds within 24-48 business hours.
+            Send us a message about your project and we will reply promptly.
           </p>
         </div>
 
         <div className="contact-layout">
-          {/* Left Panel: Direct Channels & Instagram */}
+          {/* Left Panel */}
           <div className="contact-info-panel">
             <div className="contact-card">
-              <h3 style={{ fontSize: '1.35rem', marginBottom: '1.5rem' }}>
-                Direct Communication
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '1.25rem' }}>
+                Direct Contact
               </h3>
 
               {settings.contactEmail && (
                 <div className="contact-item">
                   <div className="contact-item-icon">
-                    <Mail size={20} />
+                    <Mail size={18} />
                   </div>
                   <div>
-                    <div className="contact-item-label">Email Us</div>
+                    <div className="contact-item-label">Email</div>
                     <a
                       href={`mailto:${settings.contactEmail}`}
                       className="contact-item-val"
@@ -168,10 +162,10 @@ export default function Contact() {
               {settings.contactPhone && (
                 <div className="contact-item">
                   <div className="contact-item-icon">
-                    <Phone size={20} />
+                    <Phone size={18} />
                   </div>
                   <div>
-                    <div className="contact-item-label">Call or WhatsApp</div>
+                    <div className="contact-item-label">Phone</div>
                     <a
                       href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`}
                       className="contact-item-val"
@@ -184,12 +178,12 @@ export default function Contact() {
 
               <div className="contact-item">
                 <div className="contact-item-icon">
-                  <Clock size={20} />
+                  <Clock size={18} />
                 </div>
                 <div>
-                  <div className="contact-item-label">Working Hours</div>
-                  <div className="contact-item-val" style={{ fontSize: '0.95rem' }}>
-                    Monday – Saturday: 9:30 AM – 7:00 PM IST
+                  <div className="contact-item-label">Hours</div>
+                  <div className="contact-item-val" style={{ fontSize: '0.9rem' }}>
+                    Mon – Sat: 9:30 AM – 7:00 PM IST
                   </div>
                 </div>
               </div>
@@ -197,27 +191,9 @@ export default function Contact() {
 
             {/* Instagram Section */}
             <div className="contact-instagram-card">
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  marginBottom: '0.75rem',
-                }}
-              >
-                <InstagramIcon size={20} style={{ color: '#f43f5e' }} />
-                <h4 style={{ fontSize: '1.2rem', margin: 0 }}>Instagram Presence</h4>
-              </div>
-              <p
-                style={{
-                  fontSize: '0.9rem',
-                  lineHeight: 1.6,
-                  color: 'var(--text-muted)',
-                  marginBottom: '1.25rem',
-                }}
-              >
-                We produce creative visual reels, showcase behind-the-scenes work, and
-                provide insights on digital design and social growth.
+              <h4 style={{ fontSize: '1.1rem', marginBottom: '0.4rem' }}>Instagram</h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                Follow our official social updates and creative work.
               </p>
 
               {hasInstagram ? (
@@ -226,61 +202,48 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary btn-sm"
-                  style={{ display: 'inline-flex', gap: '0.5rem' }}
+                  style={{ gap: '0.4rem', fontSize: '0.85rem' }}
                 >
-                  <InstagramIcon size={16} /> Open Instagram Profile <ExternalLink size={14} />
+                  <InstagramIcon size={15} /> Visit Profile <ExternalLink size={13} />
                 </a>
               ) : (
                 <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.55rem 1rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px dashed rgba(255, 255, 255, 0.25)',
-                    borderRadius: 'var(--radius-md)',
-                    fontSize: '0.875rem',
+                    gap: '0.45rem',
+                    padding: '0.45rem 0.85rem',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px dashed var(--border-medium)',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '0.825rem',
                     color: 'var(--text-muted)',
                   }}
                 >
-                  <InstagramIcon size={16} style={{ color: '#f43f5e' }} />
+                  <InstagramIcon size={14} />
                   <span>Instagram link coming soon</span>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Right Panel: Interactive Contact Form */}
+          {/* Right Panel: Clean Form */}
           <div className="contact-form-panel">
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Send Us a Message</h3>
-            <p
-              style={{
-                fontSize: '0.925rem',
-                color: 'var(--text-muted)',
-                marginBottom: '1.75rem',
-              }}
-            >
-              Fill out the form below with your requirements and we will review your request promptly.
+            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.35rem' }}>Send Message</h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+              We review and reply to inquiries within 24-48 business hours.
             </p>
 
-            {/* Success Banner */}
             {successMessage && (
               <div className="alert alert-success animate-fade-in">
-                <CheckCircle size={20} style={{ flexShrink: 0 }} />
-                <div>
-                  <strong>Inquiry Received!</strong>
-                  <p style={{ fontSize: '0.875rem', marginTop: '0.25rem', color: '#6ee7b7' }}>
-                    {successMessage}
-                  </p>
-                </div>
+                <CheckCircle size={18} style={{ flexShrink: 0 }} />
+                <span>{successMessage}</span>
               </div>
             )}
 
-            {/* Error Banner */}
             {errorMessage && (
               <div className="alert alert-error animate-fade-in">
-                <AlertCircle size={20} style={{ flexShrink: 0 }} />
+                <AlertCircle size={18} style={{ flexShrink: 0 }} />
                 <span>{errorMessage}</span>
               </div>
             )}
@@ -289,14 +252,14 @@ export default function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label className="form-label" htmlFor="contact-name">
-                    Full Name *
+                    Name *
                   </label>
                   <input
                     id="contact-name"
                     name="name"
                     type="text"
                     className="form-input"
-                    placeholder="e.g. John Doe"
+                    placeholder="Your name"
                     value={formData.name}
                     onChange={handleChange}
                   />
@@ -307,14 +270,14 @@ export default function Contact() {
 
                 <div className="form-group">
                   <label className="form-label" htmlFor="contact-email">
-                    Email Address *
+                    Email *
                   </label>
                   <input
                     id="contact-email"
                     name="email"
                     type="email"
                     className="form-input"
-                    placeholder="e.g. john@business.com"
+                    placeholder="name@email.com"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -327,14 +290,14 @@ export default function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label className="form-label" htmlFor="contact-phone">
-                    Phone Number (Optional)
+                    Phone (Optional)
                   </label>
                   <input
                     id="contact-phone"
                     name="phone"
                     type="tel"
                     className="form-input"
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="Phone number"
                     value={formData.phone}
                     onChange={handleChange}
                   />
@@ -342,7 +305,7 @@ export default function Contact() {
 
                 <div className="form-group">
                   <label className="form-label" htmlFor="contact-service">
-                    Service of Interest *
+                    Service *
                   </label>
                   <select
                     id="contact-service"
@@ -351,73 +314,46 @@ export default function Contact() {
                     value={formData.serviceInterest}
                     onChange={handleChange}
                   >
-                    <option value="Website Design & Development">
-                      Website Design & Development
-                    </option>
-                    <option value="Social Media & Instagram Management">
-                      Social Media Management
-                    </option>
-                    <option value="Instagram Account Management">
-                      Instagram Account Management
-                    </option>
-                    <option value="Video Editing & Creative Content">
-                      Video Editing & Creative Content
-                    </option>
-                    <option value="Branding & Digital Creative Services">
-                      Branding & Digital Creative Services
-                    </option>
-                    <option value="Starter Web Presence">
-                      Package: Starter Web Presence
-                    </option>
-                    <option value="Social & Instagram Growth">
-                      Package: Social & Instagram Growth
-                    </option>
-                    <option value="Video & Reel Production Pack">
-                      Package: Video & Reel Production Pack
-                    </option>
-                    <option value="Complete Studio Retainer">
-                      Package: Complete Studio Retainer
-                    </option>
-                    <option value="Other Custom Project">
-                      Other / Custom Consultation
-                    </option>
+                    <option value="Website Design & Development">Website Design & Development</option>
+                    <option value="Social Media & Instagram Management">Social Media Management</option>
+                    <option value="Instagram Account Management">Instagram Account Management</option>
+                    <option value="Video Editing & Creative Content">Video Editing & Creative Content</option>
+                    <option value="Branding & Digital Creative Services">Branding & Creative</option>
+                    <option value="Starter Web Presence">Package: Starter Web Presence</option>
+                    <option value="Social & Instagram Growth">Package: Social & Instagram Growth</option>
+                    <option value="Video & Reel Production Pack">Package: Video & Reel Production</option>
+                    <option value="Complete Studio Retainer">Package: Complete Studio Retainer</option>
+                    <option value="Other / Custom Project">Other Custom Project</option>
                   </select>
-                  {fieldErrors.serviceInterest && (
-                    <div className="form-error">{fieldErrors.serviceInterest}</div>
-                  )}
                 </div>
               </div>
 
               <div className="form-group">
                 <label className="form-label" htmlFor="contact-message">
-                  Project Details / Message *
+                  Project Details *
                 </label>
                 <textarea
                   id="contact-message"
                   name="message"
                   className="form-textarea"
-                  placeholder="Tell us about your brand goals, target timeline, deliverables, or questions..."
-                  rows={5}
+                  placeholder="Tell us briefly about your brand or questions..."
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
                 />
                 {fieldErrors.message && (
                   <div className="form-error">{fieldErrors.message}</div>
                 )}
-                <div className="form-hint">
-                  Please provide at least 10 characters detailing your scope or question.
-                </div>
               </div>
 
               <Button
                 type="submit"
                 variant="primary"
-                size="lg"
                 isLoading={submitting}
                 style={{ width: '100%' }}
                 icon={Send}
               >
-                Submit Project Inquiry
+                Send Message
               </Button>
             </form>
           </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Shield, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import '../styles/navbar.css';
 
 export default function Navbar() {
@@ -65,33 +65,23 @@ export default function Navbar() {
               );
             })}
 
-            {/* Mobile Actions Drawer Content */}
+            {/* Mobile Actions Drawer Content - No admin link */}
             <div className="mobile-actions">
               <Link
                 to="/contact"
                 className="btn btn-primary"
                 onClick={handleLinkClick}
               >
-                Get in Touch <ArrowUpRight size={18} />
-              </Link>
-              <Link
-                to="/admin"
-                className="nav-admin-link"
-                onClick={handleLinkClick}
-              >
-                <Shield size={14} /> Admin Portal
+                Get in Touch <ArrowUpRight size={16} />
               </Link>
             </div>
           </ul>
         </nav>
 
-        {/* Desktop Right Actions */}
+        {/* Desktop Right CTA - No admin link shown */}
         <div className="nav-actions">
-          <Link to="/admin" className="nav-admin-link" title="Admin Portal">
-            <Shield size={14} /> Admin
-          </Link>
           <Link to="/contact" className="btn btn-primary btn-sm">
-            Start Project <ArrowUpRight size={16} />
+            Start Project <ArrowUpRight size={15} />
           </Link>
         </div>
 
@@ -101,7 +91,7 @@ export default function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle navigation menu"
         >
-          {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
     </header>

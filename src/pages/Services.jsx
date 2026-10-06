@@ -6,11 +6,7 @@ import {
   Video,
   Palette,
   CheckCircle,
-  ArrowRight,
   ArrowUpRight,
-  Laptop,
-  Flame,
-  Smartphone,
   Layers,
 } from 'lucide-react';
 import InstagramIcon from '../components/InstagramIcon';
@@ -21,111 +17,95 @@ export default function Services() {
     {
       id: 'web-development',
       icon: Code,
-      badge: 'Core Specialty',
+      badge: 'Web',
       title: 'Website Design & Development',
-      subtitle: 'Modern, high-performance web solutions built for businesses that demand quality.',
       description:
-        'We engineer websites that combine aesthetic refinement with rock-solid performance. From single-page landing sites to multi-page corporate hubs, every project is built mobile-responsive, lightning-fast, and search-optimized.',
+        'Fast, responsive, and mobile-friendly websites designed for performance and conversions.',
       deliverables: [
-        'Custom responsive UI/UX design (Figma to Code)',
-        'Modern frontend engineering with React, Vite & semantic HTML5/CSS3',
-        'Cross-browser and mobile device compatibility',
-        'On-page SEO, metadata structure & performance tuning',
-        'Contact forms, interactive components & analytics integration',
-        'Secure deployment and post-launch maintenance',
+        'Custom responsive UI design',
+        'Modern code with React & HTML5/CSS3',
+        'Mobile, tablet, and desktop optimization',
+        'On-page SEO fundamentals & fast load speeds',
+        'Contact form & interactive elements',
       ],
-      packageLink: '/packages?category=Website%20Design%20%26%20Development',
     },
     {
       id: 'social-media',
       icon: Share2,
-      badge: 'Audience Growth',
+      badge: 'Social',
       title: 'Social Media Management',
-      subtitle: 'Strategic content production and community operations to amplify your reach.',
       description:
-        'Consistent social presence requires structured strategy and creative visual storytelling. We manage your content calendars, design custom graphic assets, write compelling captions, and maintain authentic community engagement.',
+        'Consistent content scheduling and custom graphics to build audience engagement.',
       deliverables: [
-        'Content calendar strategy & monthly scheduling',
-        'High-resolution custom graphic design & carousel posts',
-        'Brand-aligned caption copywriting & targeted hashtag banks',
-        'Audience inquiry monitoring & community interaction',
-        'Bi-weekly & monthly performance growth reports',
+        'Monthly content calendar planning',
+        'Custom designed graphic posts',
+        'Caption copywriting & hashtag strategy',
+        'Audience interaction & messaging handling',
+        'Monthly performance reporting',
       ],
-      packageLink: '/packages?category=Social%20Media%20%26%20Instagram%20Management',
     },
     {
       id: 'instagram-management',
       icon: InstagramIcon,
-      badge: 'Brand Curation',
+      badge: 'Instagram',
       title: 'Instagram Account Management',
-      subtitle: 'Transform your Instagram profile into a high-converting visual flagship.',
       description:
-        'Instagram is the digital storefront for modern brands. We optimize your grid architecture, produce engaging Reels and Story sequences, and build cohesive aesthetic guidelines that position you as an industry leader.',
+        'End-to-end Instagram curation to improve brand aesthetic, reach, and engagement.',
       deliverables: [
-        'Strategic 9-grid and 12-grid aesthetic curation',
-        'Short-form vertical Reels production & trend adaptation',
-        'Interactive Instagram Stories & custom highlight covers',
-        'Profile bio optimization & call-to-action link structuring',
-        'Organic reach growth tactics and engagement monitoring',
+        'Aesthetic feed grid layout curation',
+        'Short-form vertical Reels & Story graphics',
+        'Bio optimization & link structuring',
+        'Targeted hashtag & caption strategy',
+        'Active engagement monitoring',
       ],
-      packageLink: '/packages?category=Social%20Media%20%26%20Instagram%20Management',
     },
     {
       id: 'video-editing',
       icon: Video,
-      badge: 'High Engagement',
+      badge: 'Video',
       title: 'Video Editing & Creative Content',
-      subtitle: 'Scroll-stopping short-form edits designed for maximum retention.',
       description:
-        'In the age of short-form attention, video pacing makes or breaks your content. We edit punchy, cinematic short-form videos (Reels, TikTok, YouTube Shorts) and promotional clips that capture attention within the first two seconds.',
+        'High-retention short-form video editing crafted for Instagram Reels and YouTube Shorts.',
       deliverables: [
-        'Dynamic hook editing & retention-focused narrative flow',
-        'Animated captions, stylized kinetic typography & emojis',
-        'Sound design, background score selection & audio leveling',
-        'B-roll integration, zooms, transitions & color grading',
-        'Multi-format export (9:16 vertical and 16:9 widescreen)',
+        'Dynamic hook pacing & smooth cuts',
+        'Animated captions & kinetic subtitles',
+        'Sound effects, music sync & audio leveling',
+        'Vertical 9:16 and widescreen 16:9 formats',
+        'Color grading & visual styling',
       ],
-      packageLink: '/packages?category=Video%20Editing%20%26%20Creative%20Content',
     },
     {
       id: 'branding-creative',
       icon: Palette,
-      badge: 'Visual Identity',
+      badge: 'Branding',
       title: 'Branding & Digital Creative Services',
-      subtitle: 'Memorable brand systems that set you apart in crowded markets.',
       description:
-        'From primary logos to complete brand manuals, we craft visual identities that convey trust, credibility, and modern design standards across all digital touchpoints.',
+        'Distinct brand logos and digital visual assets to give your company a recognizable presence.',
       deliverables: [
-        'Primary & secondary logo marks, logotypes & favicons',
-        'Curated color palettes & typography pairing guides',
-        'Social media banner kits and editable asset templates',
-        'Digital presentation decks & PDF company brochures',
-        'Complete brand identity guideline documentation',
+        'Logo design & visual brand guidelines',
+        'Color palette & typography standards',
+        'Social media banner templates',
+        'Digital presentation decks & PDF brochures',
       ],
-      packageLink: '/packages?category=Full%20Creative%20%26%20Digital%20Suite',
     },
   ];
 
   return (
-    <div className="services-page" style={{ paddingTop: '7rem', paddingBottom: '5rem' }}>
+    <div className="services-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <span className="section-tag">Agency Capabilities</span>
-          <h1 className="section-title">
-            Our Digital & <span className="gradient-text">Creative Services</span>
-          </h1>
+          <span className="section-tag">Services</span>
+          <h1 className="section-title">Our Digital Services</h1>
           <p className="section-description">
-            Comprehensive digital services designed specifically for businesses looking to
-            scale their online authority, engagement, and customer acquisition.
+            Clean, reliable creative digital solutions for modern businesses.
           </p>
         </div>
 
-        {/* Detailed Service Cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', marginBottom: '5rem' }}>
-          {serviceDetails.map((service, index) => {
+        {/* Concise Service Cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '4rem' }}>
+          {serviceDetails.map((service) => {
             const IconComponent = service.icon;
-            const isReversed = index % 2 === 1;
 
             return (
               <div
@@ -133,10 +113,10 @@ export default function Services() {
                 id={service.id}
                 className="glass-card"
                 style={{
-                  padding: '3rem',
+                  padding: '2rem 2.25rem',
                   display: 'grid',
                   gridTemplateColumns: '1.2fr 1fr',
-                  gap: '3rem',
+                  gap: '2.5rem',
                   alignItems: 'center',
                 }}
               >
@@ -145,78 +125,72 @@ export default function Services() {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.3rem 0.85rem',
-                      background: 'rgba(56, 189, 248, 0.1)',
-                      border: '1px solid rgba(56, 189, 248, 0.25)',
+                      gap: '0.4rem',
+                      padding: '0.25rem 0.65rem',
+                      background: 'var(--accent-light)',
+                      border: '1px solid var(--accent-border)',
                       borderRadius: 'var(--radius-full)',
                       color: 'var(--accent-primary)',
-                      fontSize: '0.8rem',
+                      fontSize: '0.75rem',
                       fontWeight: 600,
-                      marginBottom: '1rem',
+                      marginBottom: '0.75rem',
                     }}
                   >
-                    <IconComponent size={14} />
+                    <IconComponent size={13} />
                     <span>{service.badge}</span>
                   </div>
 
-                  <h2 style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>
+                  <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
                     {service.title}
                   </h2>
-                  <p
-                    style={{
-                      color: 'var(--text-main)',
-                      fontSize: '1.05rem',
-                      fontWeight: 500,
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    {service.subtitle}
-                  </p>
-                  <p style={{ lineHeight: 1.7, marginBottom: '2rem' }}>
+                  <p style={{ lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
                     {service.description}
                   </p>
 
-                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                     <Link to={`/contact?service=${encodeURIComponent(service.title)}`}>
-                      <Button variant="primary">
-                        Request Quote <ArrowUpRight size={16} />
+                      <Button variant="primary" size="sm">
+                        Request Quote <ArrowUpRight size={14} />
                       </Button>
                     </Link>
                     <Link to="/packages">
-                      <Button variant="outline">View Packages</Button>
+                      <Button variant="outline" size="sm">
+                        View Packages
+                      </Button>
                     </Link>
                   </div>
                 </div>
 
-                {/* Deliverables Box */}
+                {/* Deliverables List */}
                 <div
                   style={{
-                    background: 'rgba(15, 23, 42, 0.65)',
+                    background: '#0d1320',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-md)',
-                    padding: '2rem',
+                    padding: '1.5rem',
                   }}
                 >
                   <h4
                     style={{
-                      fontSize: '1.05rem',
-                      marginBottom: '1.25rem',
+                      fontSize: '0.9rem',
+                      marginBottom: '0.85rem',
                       color: 'var(--text-main)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.5rem',
+                      gap: '0.4rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
                     }}
                   >
-                    <Layers size={18} style={{ color: 'var(--accent-primary)' }} />
-                    Key Deliverables
+                    <Layers size={14} style={{ color: 'var(--accent-primary)' }} />
+                    Deliverables
                   </h4>
                   <ul
                     style={{
                       listStyle: 'none',
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: '0.85rem',
+                      gap: '0.55rem',
                     }}
                   >
                     {service.deliverables.map((item, dIdx) => (
@@ -224,18 +198,17 @@ export default function Services() {
                         key={dIdx}
                         style={{
                           display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '0.65rem',
-                          fontSize: '0.925rem',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          fontSize: '0.875rem',
                           color: 'var(--text-muted)',
                         }}
                       >
                         <CheckCircle
-                          size={16}
+                          size={14}
                           style={{
-                            color: 'var(--accent-emerald)',
+                            color: 'var(--accent-primary)',
                             flexShrink: 0,
-                            marginTop: '3px',
                           }}
                         />
                         <span>{item}</span>
@@ -250,15 +223,13 @@ export default function Services() {
 
         {/* CTA section */}
         <div className="cta-banner">
-          <h2>Need a Custom Combination of Services?</h2>
+          <h2>Need a Custom Project?</h2>
           <p>
-            Whether you need a dedicated web development lead or an end-to-end creative
-            retainer with ongoing video and social media management, we tailor solutions to
-            your specific goals.
+            Tell us about your requirements and we will suggest the right approach for your budget.
           </p>
           <Link to="/contact">
-            <Button variant="primary" size="lg">
-              Discuss Your Project With Us <ArrowUpRight size={18} />
+            <Button variant="primary">
+              Contact Us <ArrowUpRight size={15} />
             </Button>
           </Link>
         </div>

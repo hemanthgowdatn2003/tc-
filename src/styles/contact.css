@@ -1,36 +1,36 @@
-/* Contact Page */
+/* Contact Page Styles - Clean & Simple */
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 3.5rem;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2.5rem;
   align-items: flex-start;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
   .contact-layout {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 }
 
 .contact-info-panel {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .contact-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
 }
 
 .contact-item {
   display: flex;
   align-items: flex-start;
-  gap: 1.25rem;
-  margin-bottom: 1.75rem;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .contact-item:last-child {
@@ -38,11 +38,11 @@
 }
 
 .contact-item-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,48 +51,47 @@
 }
 
 .contact-item-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-faint);
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .contact-item-val {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-main);
 }
 
 .contact-instagram-card {
-  background: linear-gradient(135deg, rgba(225, 48, 108, 0.08) 0%, rgba(131, 58, 180, 0.08) 100%);
-  border: 1px solid rgba(225, 48, 108, 0.25);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
 }
 
 .contact-form-panel {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 2.75rem;
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   .contact-form-panel {
-    padding: 1.75rem;
+    padding: 1.5rem;
   }
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   .form-row {
     grid-template-columns: 1fr;
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, ArrowUpRight, Shield, Heart } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
 import { api } from '../services/api';
 
@@ -31,9 +31,9 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: '#070a14',
+        background: '#090d16',
         borderTop: '1px solid var(--border-subtle)',
-        padding: '5rem 0 2rem 0',
+        padding: '4rem 0 2rem 0',
         marginTop: 'auto',
       }}
     >
@@ -41,9 +41,9 @@ export default function Footer() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '3rem',
-            marginBottom: '4rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '2.5rem',
+            marginBottom: '3rem',
           }}
         >
           {/* Col 1: Brand Info */}
@@ -52,22 +52,22 @@ export default function Footer() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.75rem',
-                marginBottom: '1.25rem',
+                gap: '0.65rem',
+                marginBottom: '1rem',
               }}
             >
               <div
                 style={{
-                  width: '36px',
-                  height: '36px',
-                  background: 'var(--gradient-brand)',
-                  borderRadius: '10px',
+                  width: '32px',
+                  height: '32px',
+                  background: 'var(--accent-primary)',
+                  borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#0f172a',
+                  color: '#ffffff',
                   fontWeight: 800,
-                  fontSize: '1rem',
+                  fontSize: '0.95rem',
                 }}
               >
                 TC
@@ -75,7 +75,7 @@ export default function Footer() {
               <span
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.35rem',
+                  fontSize: '1.2rem',
                   fontWeight: 700,
                 }}
               >
@@ -84,40 +84,39 @@ export default function Footer() {
             </div>
             <p
               style={{
-                fontSize: '0.925rem',
-                lineHeight: 1.65,
+                fontSize: '0.9rem',
+                lineHeight: 1.6,
                 color: 'var(--text-muted)',
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
               }}
             >
-              Creative digital services agency delivering modern web development,
-              strategic social media & Instagram management, and scroll-stopping video content.
+              Creative digital agency for websites, social media, and video editing.
             </p>
 
             {/* Instagram Link Section */}
-            <div style={{ marginTop: '1rem' }}>
+            <div>
               {hasInstagram ? (
                 <a
                   href={settings.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline btn-sm"
-                  style={{ gap: '0.5rem', borderColor: '#f43f5e', color: '#fb7185' }}
+                  style={{ gap: '0.4rem', fontSize: '0.8rem' }}
                 >
-                  <InstagramIcon size={16} /> Follow on Instagram
+                  <InstagramIcon size={15} /> Instagram
                 </a>
               ) : (
                 <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.4rem 0.85rem',
-                    background: 'rgba(244, 63, 94, 0.08)',
-                    border: '1px dashed rgba(244, 63, 94, 0.3)',
-                    borderRadius: 'var(--radius-md)',
-                    fontSize: '0.825rem',
-                    color: '#fb7185',
+                    gap: '0.45rem',
+                    padding: '0.35rem 0.75rem',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '0.8rem',
+                    color: 'var(--text-faint)',
                   }}
                 >
                   <InstagramIcon size={14} /> Instagram link coming soon
@@ -130,9 +129,11 @@ export default function Footer() {
           <div>
             <h4
               style={{
-                fontSize: '1.1rem',
-                marginBottom: '1.25rem',
+                fontSize: '0.95rem',
+                marginBottom: '1rem',
                 color: 'var(--text-main)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
               }}
             >
               Navigation
@@ -142,7 +143,8 @@ export default function Footer() {
                 listStyle: 'none',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.75rem',
+                gap: '0.65rem',
+                fontSize: '0.9rem',
               }}
             >
               <li>
@@ -157,7 +159,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/packages" style={{ color: 'var(--text-muted)' }}>
-                  Service Packages
+                  Packages
                 </Link>
               </li>
               <li>
@@ -167,12 +169,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/team" style={{ color: 'var(--text-muted)' }}>
-                  Meet the Team
+                  Team
                 </Link>
               </li>
               <li>
                 <Link to="/contact" style={{ color: 'var(--text-muted)' }}>
-                  Contact Us
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -182,9 +184,11 @@ export default function Footer() {
           <div>
             <h4
               style={{
-                fontSize: '1.1rem',
-                marginBottom: '1.25rem',
+                fontSize: '0.95rem',
+                marginBottom: '1rem',
                 color: 'var(--text-main)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
               }}
             >
               Services
@@ -194,41 +198,43 @@ export default function Footer() {
                 listStyle: 'none',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.75rem',
-                fontSize: '0.925rem',
+                gap: '0.65rem',
+                fontSize: '0.9rem',
                 color: 'var(--text-muted)',
               }}
             >
-              <li>Website Design & Development</li>
+              <li>Website Development</li>
               <li>Social Media Management</li>
-              <li>Instagram Account Management</li>
-              <li>Video Editing & Creative Content</li>
-              <li>Branding & Digital Creative</li>
+              <li>Instagram Management</li>
+              <li>Video Editing & Content</li>
+              <li>Branding & Digital Design</li>
             </ul>
           </div>
 
-          {/* Col 4: Contact & Office */}
+          {/* Col 4: Contact */}
           <div>
             <h4
               style={{
-                fontSize: '1.1rem',
-                marginBottom: '1.25rem',
+                fontSize: '0.95rem',
+                marginBottom: '1rem',
                 color: 'var(--text-main)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
               }}
             >
-              Get in Touch
+              Contact
             </h4>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1rem',
-                fontSize: '0.925rem',
+                gap: '0.75rem',
+                fontSize: '0.9rem',
               }}
             >
               {settings.contactEmail && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <Mail size={16} style={{ color: 'var(--accent-primary)' }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Mail size={15} style={{ color: 'var(--accent-primary)' }} />
                   <a
                     href={`mailto:${settings.contactEmail}`}
                     style={{ color: 'var(--text-muted)' }}
@@ -238,8 +244,8 @@ export default function Footer() {
                 </div>
               )}
               {settings.contactPhone && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <Phone size={16} style={{ color: 'var(--accent-primary)' }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Phone size={15} style={{ color: 'var(--accent-primary)' }} />
                   <a
                     href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`}
                     style={{ color: 'var(--text-muted)' }}
@@ -248,44 +254,28 @@ export default function Footer() {
                   </a>
                 </div>
               )}
-              <div style={{ marginTop: '0.5rem' }}>
-                <Link
-                  to="/admin"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    fontSize: '0.8rem',
-                    color: 'var(--text-faint)',
-                  }}
-                >
-                  <Shield size={13} /> Internal Admin Portal
-                </Link>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar - Clean copyright, no admin link */}
         <div
           style={{
             borderTop: '1px solid var(--border-subtle)',
-            paddingTop: '2rem',
+            paddingTop: '1.5rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '1rem',
-            fontSize: '0.85rem',
+            gap: '0.75rem',
+            fontSize: '0.825rem',
             color: 'var(--text-faint)',
           }}
         >
           <div>
             &copy; {new Date().getFullYear()} TC Web & Studio. All rights reserved.
           </div>
-          <div>
-            Crafted for speed, modern aesthetics, and measurable brand growth.
-          </div>
+          <div>Simple, reliable digital solutions.</div>
         </div>
       </div>
     </footer>

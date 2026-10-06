@@ -8,7 +8,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Sparkles,
-  CheckCircle2,
   Users,
   Compass,
 } from 'lucide-react';
@@ -46,67 +45,37 @@ export default function Home() {
   const coreServices = [
     {
       icon: Code,
-      title: 'Website Design & Development',
-      description:
-        'Fast, responsive, and search-optimized business websites designed to turn visitors into paying customers.',
-      features: [
-        'Custom modern UI/UX design',
-        'Mobile-first responsive architecture',
-        'Clean, accessible code & fast page speeds',
-        'Built-in SEO & search visibility foundations',
-      ],
+      title: 'Website Development',
+      description: 'Modern, fast, and responsive websites built to turn visitors into clients.',
+      features: ['Mobile-friendly design', 'Fast loading speeds', 'SEO optimization'],
       link: '/services',
     },
     {
       icon: Share2,
       title: 'Social Media Management',
-      description:
-        'Full-funnel social media strategy that builds brand authority and active community engagement across channels.',
-      features: [
-        'Content calendar planning & curation',
-        'Brand-aligned graphic post design',
-        'Audience engagement & message management',
-        'Monthly data-driven analytics reports',
-      ],
+      description: 'Consistent content planning and graphic design to grow your brand reach.',
+      features: ['Content scheduling', 'Branded post graphics', 'Audience engagement'],
       link: '/services',
     },
     {
       icon: InstagramIcon,
-      title: 'Instagram Account Management',
-      description:
-        'End-to-end Instagram curation designed to elevate your aesthetic, increase reach, and convert profile visitors.',
-      features: [
-        'Aesthetic feed grid layout curation',
-        'High-converting Reels & Stories production',
-        'Bio optimization & highlight branding',
-        'Targeted hashtag & caption copywriting',
-      ],
+      title: 'Instagram Management',
+      description: 'Curated feed layouts, aesthetic grids, and high-converting Reels.',
+      features: ['Grid layout curation', 'Reels & Stories creation', 'Bio & link optimization'],
       link: '/services',
     },
     {
       icon: Video,
-      title: 'Video Editing & Creative Content',
-      description:
-        'High-retention short-form video editing crafted for Instagram Reels, YouTube Shorts, and promotional campaigns.',
-      features: [
-        'Dynamic hook pacing & narrative rhythm',
-        'Animated captions, sound design & SFX',
-        'Color grading & visual styling',
-        'Multi-aspect ratio formatting (9:16 & 16:9)',
-      ],
+      title: 'Video Editing',
+      description: 'Short-form videos edited for maximum retention on Reels and Shorts.',
+      features: ['Dynamic captions & pacing', 'Sound design & hooks', 'Vertical 9:16 format'],
       link: '/services',
     },
     {
       icon: Palette,
-      title: 'Branding & Digital Creative Services',
-      description:
-        'Distinct brand identities, logos, and visual digital assets that give your company a recognizable, premium presence.',
-      features: [
-        'Logo design & visual brand guides',
-        'Color schemes & typography pairings',
-        'Marketing collaterals & digital banners',
-        'Social media kit & design templates',
-      ],
+      title: 'Branding & Creative',
+      description: 'Distinct brand logos and digital design assets for your business.',
+      features: ['Logo & style guides', 'Marketing graphics', 'Presentation decks'],
       link: '/services',
     },
   ];
@@ -114,28 +83,28 @@ export default function Home() {
   const approachSteps = [
     {
       number: '01',
-      title: 'Understand Requirements',
-      desc: 'We dive deep into your goals, audience, and vision to clearly define project scope and requirements.',
+      title: 'Requirements',
+      desc: 'Understand your goals, target audience, and project scope.',
     },
     {
       number: '02',
-      title: 'Plan & Agree Deliverables',
-      desc: 'We map out the timeline, milestones, and deliverables so expectations are aligned from day one.',
+      title: 'Planning',
+      desc: 'Agree on deliverables, timeline, and project milestones.',
     },
     {
       number: '03',
-      title: 'Design & Create Content',
-      desc: 'Our specialists craft high-quality code, visual designs, and multimedia assets tailored to your brand.',
+      title: 'Design & Build',
+      desc: 'Craft clean code, visuals, and multimedia content.',
     },
     {
       number: '04',
-      title: 'Review & Refine Work',
-      desc: 'We iterate collaboratively with your feedback to polish every detail to high professional standards.',
+      title: 'Refinement',
+      desc: 'Review together and polish every detail based on feedback.',
     },
     {
       number: '05',
-      title: 'Deliver & Ongoing Support',
-      desc: 'We launch the project smoothly and provide agreed support to ensure long-term success.',
+      title: 'Launch & Support',
+      desc: 'Deliver final files and provide agreed post-launch support.',
     },
   ];
 
@@ -144,22 +113,19 @@ export default function Home() {
       name: 'Naveen',
       role: 'Video & Creative',
       initials: 'N',
-      focusArea:
-        'Short-form video editing, visual storytelling, dynamic pacing, and multimedia creative assets.',
+      focusArea: 'Short-form video editing, visual storytelling, and creative content.',
     },
     {
       name: 'Nidhith',
       role: 'Social Media & Client Handling',
       initials: 'NI',
-      focusArea:
-        'Strategic social campaigns, client communications, community relations, and content planning.',
+      focusArea: 'Social campaigns, client communication, and community management.',
     },
     {
       name: 'Hemant',
       role: 'Web Development',
       initials: 'H',
-      focusArea:
-        'Full-stack frontend and backend web development, responsive engineering, and performance optimization.',
+      focusArea: 'Responsive websites, performance tuning, and frontend engineering.',
     },
   ];
 
@@ -169,31 +135,28 @@ export default function Home() {
     <div className="home-page">
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="hero-glow-1"></div>
         <div className="container">
           <div className="hero-content">
             <div className="hero-badge animate-fade-in">
-              <Sparkles size={16} /> Creative Digital Services Agency
+              <Sparkles size={14} /> Creative Digital Services
             </div>
             <h1 className="hero-headline animate-fade-in">
-              Elevate Your Brand With <br />
-              <span className="gradient-text">High-Impact Digital Solutions</span>
+              Digital Solutions That <span className="accent-text">Grow Your Business</span>
             </h1>
             <p className="hero-description animate-fade-in">
-              TC Web & Studio designs modern responsive websites, curates vibrant social
-              media and Instagram channels, and edits cinematic video content that connects
-              with your audience.
+              We build fast websites, manage social channels, and produce engaging videos
+              for modern brands.
             </p>
 
             <div className="hero-cta-group animate-fade-in">
               <Link to="/services">
                 <Button variant="primary" size="lg">
-                  Explore Services <ArrowRight size={18} />
+                  Explore Services <ArrowRight size={16} />
                 </Button>
               </Link>
               <Link to="/packages">
                 <Button variant="outline" size="lg">
-                  View Packages <ArrowUpRight size={18} />
+                  View Packages <ArrowUpRight size={16} />
                 </Button>
               </Link>
             </div>
@@ -205,16 +168,16 @@ export default function Home() {
                 <div className="metric-label">Client Focused</div>
               </div>
               <div className="metric-item">
-                <div className="metric-value">5+</div>
-                <div className="metric-label">Digital Disciplines</div>
+                <div className="metric-value">5</div>
+                <div className="metric-label">Core Services</div>
               </div>
               <div className="metric-item">
                 <div className="metric-value">Fast</div>
-                <div className="metric-label">Turnaround Cycles</div>
+                <div className="metric-label">Turnaround</div>
               </div>
               <div className="metric-item">
-                <div className="metric-value">Modern</div>
-                <div className="metric-label">Tech & Creative Stack</div>
+                <div className="metric-value">Direct</div>
+                <div className="metric-label">Communication</div>
               </div>
             </div>
           </div>
@@ -225,13 +188,10 @@ export default function Home() {
       <section className="section" id="services">
         <div className="container">
           <div className="section-header">
-            <span className="section-tag">What We Do</span>
-            <h2 className="section-title">
-              Our Core <span className="gradient-text">Agency Services</span>
-            </h2>
+            <span className="section-tag">Services</span>
+            <h2 className="section-title">What We Offer</h2>
             <p className="section-description">
-              Tailored digital solutions built to elevate your business presence across web,
-              social channels, and multimedia.
+              Focused digital services designed to help your brand stand out.
             </p>
           </div>
 
@@ -248,10 +208,10 @@ export default function Home() {
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
             <Link to="/services">
               <Button variant="outline">
-                View Detailed Services Breakdown <ArrowRight size={16} />
+                All Services Details <ArrowRight size={15} />
               </Button>
             </Link>
           </div>
@@ -259,20 +219,13 @@ export default function Home() {
       </section>
 
       {/* Featured Service Packages */}
-      <section
-        className="section"
-        id="packages"
-        style={{ background: 'rgba(15, 23, 42, 0.4)' }}
-      >
+      <section className="section" id="packages" style={{ background: '#0e1422' }}>
         <div className="container">
           <div className="section-header">
-            <span className="section-tag">Service Packages</span>
-            <h2 className="section-title">
-              Transparent, Scalable <span className="gradient-text">Packages</span>
-            </h2>
+            <span className="section-tag">Packages</span>
+            <h2 className="section-title">Popular Service Packages</h2>
             <p className="section-description">
-              Choose from our curated service bundles or request a custom package designed
-              specifically for your business requirements.
+              Clear pricing and deliverables. Download brochures or get started directly.
             </p>
           </div>
 
@@ -292,10 +245,10 @@ export default function Home() {
             </div>
           )}
 
-          <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
             <Link to="/packages">
               <Button variant="primary">
-                View All Packages & PDF Brochures <ArrowUpRight size={18} />
+                View All Packages & Brochures <ArrowUpRight size={16} />
               </Button>
             </Link>
           </div>
@@ -307,14 +260,11 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <span className="section-tag">
-              <Compass size={14} /> Workflow Process
+              <Compass size={13} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Process
             </span>
-            <h2 className="section-title">
-              Our <span className="gradient-text">5-Step Approach</span>
-            </h2>
+            <h2 className="section-title">Our 5-Step Approach</h2>
             <p className="section-description">
-              A structured and transparent creative process ensuring precision, communication,
-              and outstanding results from start to finish.
+              A straightforward process from concept to delivery.
             </p>
           </div>
 
@@ -336,14 +286,11 @@ export default function Home() {
           <div className="instagram-banner">
             <div className="instagram-banner-content">
               <div className="instagram-badge">
-                <InstagramIcon size={14} /> Instagram Management
+                <InstagramIcon size={13} /> Instagram
               </div>
-              <h3 className="instagram-banner-title">
-                Curating Brands That Stand Out On Instagram
-              </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.975rem' }}>
-                We engineer visually arresting grids, scroll-stopping Reels, and high-impact
-                stories designed to build an engaged community around your business.
+              <h3 className="instagram-banner-title">Instagram Account Management</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.925rem' }}>
+                We curate clean aesthetic grids, produce short-form Reels, and manage audience engagement.
               </p>
             </div>
 
@@ -355,11 +302,11 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="btn btn-secondary"
                 >
-                  <InstagramIcon size={18} /> Visit Official Instagram <ArrowUpRight size={16} />
+                  <InstagramIcon size={16} /> View Instagram <ArrowUpRight size={15} />
                 </a>
               ) : (
                 <div className="instagram-coming-soon">
-                  <InstagramIcon size={18} style={{ color: '#f43f5e' }} />
+                  <InstagramIcon size={15} />
                   <span>Instagram link coming soon</span>
                 </div>
               )}
@@ -369,18 +316,15 @@ export default function Home() {
       </section>
 
       {/* Team Introduction Section */}
-      <section className="section" id="team">
+      <section className="section" id="team" style={{ background: '#0e1422' }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">
-              <Users size={14} /> The Team
+              <Users size={13} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Team
             </span>
-            <h2 className="section-title">
-              Meet Our <span className="gradient-text">Creative Specialists</span>
-            </h2>
+            <h2 className="section-title">Meet Our Team</h2>
             <p className="section-description">
-              Dedicated professionals combining technical precision and visual creativity to
-              bring your brand's vision to reality.
+              The creative specialists delivering your projects.
             </p>
           </div>
 
@@ -395,14 +339,6 @@ export default function Home() {
               />
             ))}
           </div>
-
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Link to="/team">
-              <Button variant="outline">
-                Learn More About The Team <ArrowRight size={16} />
-              </Button>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -410,20 +346,19 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="cta-banner">
-            <h2>Ready to Elevate Your Digital Presence?</h2>
+            <h2>Ready to Start Your Project?</h2>
             <p>
-              Let's discuss your next website, social campaign, or creative video project.
-              Get in touch with our team today.
+              Contact us today for websites, social media management, or video editing.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/contact">
                 <Button variant="primary" size="lg">
-                  Start Your Project <ArrowUpRight size={18} />
+                  Get in Touch <ArrowUpRight size={16} />
                 </Button>
               </Link>
               <Link to="/packages">
                 <Button variant="outline" size="lg">
-                  Explore Packages
+                  View Packages
                 </Button>
               </Link>
             </div>

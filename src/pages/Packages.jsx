@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Package, Sparkles, Filter, RefreshCw } from 'lucide-react';
+import { Package, Sparkles, RefreshCw } from 'lucide-react';
 import PackageCard from '../components/PackageCard';
 import Button from '../components/Button';
 import { api } from '../services/api';
@@ -22,7 +22,7 @@ export default function Packages() {
       setPackages(data);
     } catch (err) {
       console.error('Error fetching packages:', err);
-      setError('Unable to load service packages right now. Please try again.');
+      setError('Unable to load service packages. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -32,7 +32,6 @@ export default function Packages() {
     fetchPackages();
   }, []);
 
-  // Compute categories dynamically
   const categories = ['All', ...new Set(packages.map((p) => p.category).filter(Boolean))];
 
   const filteredPackages =
@@ -50,20 +49,16 @@ export default function Packages() {
   };
 
   return (
-    <div className="packages-page" style={{ paddingTop: '7.5rem', paddingBottom: '6rem' }}>
+    <div className="packages-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
       <div className="container">
         {/* Header */}
         <div className="section-header">
           <span className="section-tag">
-            <Sparkles size={14} /> Service Bundles
+            <Sparkles size={13} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Pricing
           </span>
-          <h1 className="section-title">
-            Tailored <span className="gradient-text">Service Packages</span>
-          </h1>
+          <h1 className="section-title">Service Packages</h1>
           <p className="section-description">
-            Transparent, results-driven packages designed for growing brands. Each package
-            includes clear deliverables, dedicated support, and optional downloadable PDF
-            brochures.
+            Simple, transparent packages. View details or download PDF brochures.
           </p>
         </div>
 
@@ -85,29 +80,23 @@ export default function Packages() {
 
         {/* Loading State */}
         {loading && (
-          <div
-            style={{
-              textAlign: 'center',
-              padding: '5rem 0',
-              color: 'var(--text-muted)',
-            }}
-          >
+          <div style={{ textAlign: 'center', padding: '4rem 0', color: 'var(--text-muted)' }}>
             <RefreshCw
-              size={32}
+              size={28}
               style={{
                 animation: 'spin 1s linear infinite',
-                margin: '0 auto 1rem auto',
+                margin: '0 auto 0.75rem auto',
                 display: 'block',
                 color: 'var(--accent-primary)',
               }}
             />
-            <p>Loading available service packages...</p>
+            <p style={{ fontSize: '0.9rem' }}>Loading packages...</p>
           </div>
         )}
 
         {/* Error State */}
         {error && !loading && (
-          <div className="alert alert-error" style={{ maxWidth: '600px', margin: '2rem auto' }}>
+          <div className="alert alert-error" style={{ maxWidth: '500px', margin: '2rem auto' }}>
             <span>{error}</span>
             <Button
               variant="outline"
@@ -120,25 +109,17 @@ export default function Packages() {
           </div>
         )}
 
-        {/* Empty Packages State (Friendly message requirement) */}
+        {/* Empty Packages State */}
         {!loading && !error && filteredPackages.length === 0 && (
           <div className="packages-empty">
             <Package className="packages-empty-icon" />
-            <h3 className="packages-empty-title">No Packages Available</h3>
+            <h3 className="packages-empty-title">No Packages in this Category</h3>
             <p className="packages-empty-desc">
-              {selectedCategory !== 'All'
-                ? `There are currently no active packages under "${selectedCategory}".`
-                : 'We are currently updating our service packages. Please check back shortly or get in touch for a custom proposal.'}
+              Please choose another category or contact us for a custom quote.
             </p>
-            {selectedCategory !== 'All' ? (
-              <Button variant="outline" onClick={() => handleFilterClick('All')}>
-                View All Categories
-              </Button>
-            ) : (
-              <a href="/contact">
-                <Button variant="primary">Contact For Custom Proposal</Button>
-              </a>
-            )}
+            <Button variant="outline" onClick={() => handleFilterClick('All')}>
+              View All
+            </Button>
           </div>
         )}
 
@@ -153,31 +134,16 @@ export default function Packages() {
 
         {/* Bottom Custom Inquiry Box */}
         <div
-          className="glass-card"
-          style={{
-            marginTop: '5rem',
-            textAlign: 'center',
-            padding: '3rem 2rem',
-            border: '1px solid var(--border-medium)',
-          }}
+          className="cta-banner"
+          style={{ marginTop: '4rem' }}
         >
-          <h3 style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>
-            Looking for a Bespoke Custom Retainer?
-          </h3>
-          <p
-            style={{
-              maxWidth: '620px',
-              margin: '0 auto 2rem auto',
-              color: 'var(--text-muted)',
-            }}
-          >
-            We regularly formulate custom agreements combining high-frequency video editing,
-            continuous web development sprints, and daily Instagram management for high-growth
-            clients.
+          <h2>Need Custom Pricing?</h2>
+          <p>
+            We formulate tailored retainers combining web, video, and social management.
           </p>
           <a href="/contact">
-            <Button variant="secondary" size="lg">
-              Inquire About Custom Retainers
+            <Button variant="secondary">
+              Request Custom Quote
             </Button>
           </a>
         </div>
