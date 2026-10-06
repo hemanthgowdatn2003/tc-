@@ -19,6 +19,7 @@ import {
   Eye,
   RefreshCw,
   Copy,
+  Users,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
@@ -35,8 +36,9 @@ export default function AdminDashboard() {
   const [loggingIn, setLoggingIn] = useState(false);
 
   // Dashboard state
-  const [activeTab, setActiveTab] = useState('packages'); // 'packages' | 'uploads' | 'inquiries' | 'settings'
+  const [activeTab, setActiveTab] = useState('packages'); // 'packages' | 'team' | 'uploads' | 'inquiries' | 'settings'
   const [packages, setPackages] = useState([]);
+  const [team, setTeam] = useState([]);
   const [uploads, setUploads] = useState([]);
   const [inquiries, setInquiries] = useState([]);
   const [settings, setSettings] = useState({
@@ -70,6 +72,19 @@ export default function AdminDashboard() {
   const [newFeatureInput, setNewFeatureInput] = useState('');
   const [savingPackage, setSavingPackage] = useState(false);
 
+  // Team Member Modal (Create / Edit)
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
+  const [editingTeamMemberId, setEditingTeamMemberId] = useState(null);
+  const [teamFormData, setTeamFormData] = useState({
+    name: '',
+    role: '',
+    initials: '',
+    focusArea: '',
+    imageUrl: '',
+    isActive: true,
+  });
+  const [savingTeamMember, setSavingTeamMember] = useState(false);
+
   // Upload state
   const [uploadFile, setUploadFile] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -82,16 +97,18 @@ export default function AdminDashboard() {
   const loadDashboardData = async () => {
     try {
       setLoadingData(true);
-      const [pkgs, uplds, inqs, sttngs] = await Promise.all([
+      const [pkgs, uplds, inqs, sttngs, tm] = await Promise.all([
         api.adminGetPackages().catch(() => []),
         api.adminGetUploads().catch(() => []),
         api.adminGetInquiries().catch(() => []),
         api.getSettings().catch(() => ({})),
+        api.adminGetTeam().catch(() => []),
       ]);
       setPackages(pkgs);
       setUploads(uplds);
       setInquiries(inqs);
       setSettings((prev) => ({ ...prev, ...sttngs }));
+      setTeam(tm);
     } catch (err) {
       console.error('Error loading admin dashboard data:', err);
     } finally {
@@ -248,6 +265,87 @@ export default function AdminDashboard() {
     }
   };
 
+  // Team Member Management Handlers
+  const openCreateTeamModal = () => {
+    setEditingTeamMemberId(null);
+    setTeamFormData({
+      name: '',
+      role: '',
+      initials: '',
+      focusArea: '',
+      imageUrl: '',
+      isActive: true,
+    });
+    setIsTeamModalOpen(true);
+  };
+
+  const openEditTeamModal = (member) => {
+    setEditingTeamMemberId(member.id);
+    setTeamFormData({
+      name: member.name || '',
+      role: member.role || '',
+      initials: member.initials || '',
+      focusArea: member.focusArea || '',
+      imageUrl: member.imageUrl || '',
+      isActive: member.isActive !== false,
+    });
+    setIsTeamModalOpen(true);
+  };
+
+  const handleSaveTeamMember = async (e) => {
+    e.preventDefault();
+    if (!teamFormData.name.trim()) {
+      notifyError('Team member name is required.');
+      return;
+    }
+    if (!teamFormData.role.trim()) {
+      notifyError('Team member role is required.');
+      return;
+    }
+
+    try {
+      setSavingTeamMember(true);
+      if (editingTeamMemberId) {
+        await api.adminUpdateTeamMember(editingTeamMemberId, teamFormData);
+        notifySuccess(`Team member "${teamFormData.name}" updated successfully.`);
+      } else {
+        await api.adminCreateTeamMember(teamFormData);
+        notifySuccess(`Team member "${teamFormData.name}" added successfully.`);
+      }
+      setIsTeamModalOpen(false);
+      loadDashboardData();
+    } catch (err) {
+      notifyError(err.message || 'Failed to save team member.');
+    } finally {
+      setSavingTeamMember(false);
+    }
+  };
+
+  const handleDeleteTeamMember = async (id, name) => {
+    if (!window.confirm(`Are you sure you want to remove team member "${name}"?`)) {
+      return;
+    }
+    try {
+      await api.adminDeleteTeamMember(id);
+      notifySuccess(`Team member "${name}" removed successfully.`);
+      loadDashboardData();
+    } catch (err) {
+      notifyError(err.message || 'Failed to delete team member.');
+    }
+  };
+
+  const handleToggleTeamMemberStatus = async (member) => {
+    try {
+      await api.adminUpdateTeamMember(member.id, { isActive: !member.isActive });
+      notifySuccess(
+        `Team member "${member.name}" is now ${!member.isActive ? 'Active (Visible)' : 'Hidden'}.`
+      );
+      loadDashboardData();
+    } catch (err) {
+      notifyError(err.message || 'Failed to update team member status.');
+    }
+  };
+
   // Upload Management Handlers
   const handleUploadSubmit = async (e) => {
     e.preventDefault();
@@ -395,6 +493,7 @@ export default function AdminDashboard() {
   // Stats calculation
   const totalPackages = packages.length;
   const activePackages = packages.filter((p) => p.isActive).length;
+  const totalTeam = team.length;
   const totalUploads = uploads.length;
   const totalInquiries = inquiries.length;
 
@@ -452,10 +551,10 @@ export default function AdminDashboard() {
         </div>
         <div className="admin-stat-card">
           <div>
-            <div className="admin-stat-val">{totalPackages}</div>
-            <div className="admin-stat-label">Total Packages in Catalog</div>
+            <div className="admin-stat-val">{totalTeam}</div>
+            <div className="admin-stat-label">Total Team Members</div>
           </div>
-          <FileText size={28} style={{ color: 'var(--accent-indigo)' }} />
+          <Users size={28} style={{ color: 'var(--accent-indigo)' }} />
         </div>
         <div className="admin-stat-card">
           <div>
@@ -481,6 +580,13 @@ export default function AdminDashboard() {
           onClick={() => setActiveTab('packages')}
         >
           <Package size={16} /> Service Packages ({totalPackages})
+        </button>
+        <button
+          type="button"
+          className={`admin-tab-btn ${activeTab === 'team' ? 'active' : ''}`}
+          onClick={() => setActiveTab('team')}
+        >
+          <Users size={16} /> Team Members ({totalTeam})
         </button>
         <button
           type="button"
@@ -643,6 +749,162 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
+        </div>
+      )}
+
+      {/* TAB: TEAM MEMBERS MANAGEMENT */}
+      {activeTab === 'team' && (
+        <div className="admin-card">
+          <div className="admin-card-header">
+            <div>
+              <h3 style={{ fontSize: '1.35rem', margin: 0 }}>Team Members Management</h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                Add, edit, or remove specialists displayed on the public Team and Home pages.
+              </p>
+            </div>
+            <Button variant="primary" size="sm" icon={Plus} onClick={openCreateTeamModal}>
+              Add Team Member
+            </Button>
+          </div>
+
+          {team.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '3.5rem 1rem', color: 'var(--text-muted)' }}>
+              <Users size={48} style={{ opacity: 0.35, marginBottom: '0.75rem', color: 'var(--accent-primary)' }} />
+              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.35rem' }}>No team members listed</h4>
+              <p style={{ marginBottom: '1.25rem', fontSize: '0.9rem' }}>
+                Add your team members to showcase your creative and technical talent to prospective clients.
+              </p>
+              <Button variant="primary" size="sm" icon={Plus} onClick={openCreateTeamModal}>
+                Add First Team Member
+              </Button>
+            </div>
+          ) : (
+            <div className="admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Member</th>
+                    <th>Role</th>
+                    <th>Initials</th>
+                    <th>Focus Area / Responsibilities</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {team.map((member) => (
+                    <tr key={member.id || member.name}>
+                      <td>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          {member.imageUrl ? (
+                            <img
+                              src={member.imageUrl}
+                              alt={member.name}
+                              style={{
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                                border: '2px solid var(--border-medium)',
+                              }}
+                            />
+                          ) : (
+                            <div
+                              style={{
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '50%',
+                                background: 'var(--accent-light)',
+                                border: '1px solid var(--accent-border)',
+                                color: 'var(--accent-primary)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontWeight: 700,
+                                fontSize: '0.95rem',
+                              }}
+                            >
+                              {member.initials || (member.name ? member.name.slice(0, 2).toUpperCase() : 'TC')}
+                            </div>
+                          )}
+                          <div>
+                            <div style={{ fontWeight: 600, color: 'var(--text-main)' }}>
+                              {member.name}
+                            </div>
+                            {member.imageUrl && (
+                              <span style={{ fontSize: '0.75rem', color: 'var(--text-faint)' }}>
+                                Photo attached
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span className="badge badge-cyan">{member.role}</span>
+                      </td>
+                      <td>
+                        <span style={{ fontFamily: 'monospace', fontWeight: 600, color: 'var(--text-faint)' }}>
+                          {member.initials || '—'}
+                        </span>
+                      </td>
+                      <td style={{ maxWidth: '340px' }}>
+                        <span
+                          style={{
+                            fontSize: '0.85rem',
+                            color: 'var(--text-muted)',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            lineHeight: 1.45,
+                          }}
+                        >
+                          {member.focusArea || 'No description provided.'}
+                        </span>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => handleToggleTeamMemberStatus(member)}
+                          className={`badge ${member.isActive !== false ? 'badge-emerald' : 'badge-danger'}`}
+                          style={{
+                            cursor: 'pointer',
+                            border: 'none',
+                            background: member.isActive !== false ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)',
+                            color: member.isActive !== false ? '#059669' : '#dc2626',
+                            padding: '0.35rem 0.75rem',
+                          }}
+                          title="Click to toggle visibility"
+                        >
+                          {member.isActive !== false ? 'Active (Live)' : 'Draft (Hidden)'}
+                        </button>
+                      </td>
+                      <td>
+                        <div className="action-btns">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => openEditTeamModal(member)}
+                            title="Edit Team Member"
+                          >
+                            <Edit3 size={14} />
+                          </Button>
+                          <Button
+                            variant="danger"
+                            size="sm"
+                            onClick={() => handleDeleteTeamMember(member.id, member.name)}
+                            title="Delete Team Member"
+                          >
+                            <Trash2 size={14} />
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
 
@@ -1007,7 +1269,7 @@ export default function AdminDashboard() {
           {/* Pricing Controls */}
           <div
             style={{
-              background: 'rgba(15, 23, 42, 0.4)',
+              background: 'var(--bg-surface)',
               padding: '1.25rem',
               borderRadius: 'var(--radius-md)',
               marginBottom: '1.25rem',
@@ -1223,6 +1485,138 @@ export default function AdminDashboard() {
               isLoading={savingPackage}
             >
               {editingPackageId ? 'Update Package' : 'Create Package'}
+            </Button>
+          </div>
+        </form>
+      </Modal>
+
+      {/* Team Member Creation / Edit Modal */}
+      <Modal
+        isOpen={isTeamModalOpen}
+        onClose={() => setIsTeamModalOpen(false)}
+        title={editingTeamMemberId ? 'Edit Team Member' : 'Add New Team Member'}
+      >
+        <form onSubmit={handleSaveTeamMember}>
+          <div className="form-group">
+            <label className="form-label">Full Name *</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="e.g. Alex Morgan"
+              value={teamFormData.name}
+              onChange={(e) => {
+                const val = e.target.value;
+                setTeamFormData((prev) => {
+                  const parts = val.trim().split(/\s+/);
+                  const autoInitials =
+                    parts.length >= 2
+                      ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+                      : val.slice(0, 2).toUpperCase();
+                  return {
+                    ...prev,
+                    name: val,
+                    initials:
+                      prev.initials === '' || prev.initials.length <= 2
+                        ? autoInitials
+                        : prev.initials,
+                  };
+                });
+              }}
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">Role / Specialty *</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="e.g. Full-Stack Web Engineer"
+                value={teamFormData.role}
+                onChange={(e) =>
+                  setTeamFormData((prev) => ({ ...prev, role: e.target.value }))
+                }
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Avatar Initials</label>
+              <input
+                type="text"
+                maxLength={4}
+                className="form-input"
+                placeholder="e.g. AM"
+                value={teamFormData.initials}
+                onChange={(e) =>
+                  setTeamFormData((prev) => ({
+                    ...prev,
+                    initials: e.target.value.toUpperCase(),
+                  }))
+                }
+              />
+              <span className="form-hint">Displayed in avatar if no image is set</span>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Focus Area & Bio</label>
+            <textarea
+              className="form-textarea"
+              rows={3}
+              placeholder="Key responsibilities and technical expertise (e.g., Short-form video editing, pacing, and visual storytelling)..."
+              value={teamFormData.focusArea}
+              onChange={(e) =>
+                setTeamFormData((prev) => ({ ...prev, focusArea: e.target.value }))
+              }
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Profile Photo URL (Optional)</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="/uploads/team-photo.jpg or https://..."
+              value={teamFormData.imageUrl}
+              onChange={(e) =>
+                setTeamFormData((prev) => ({ ...prev, imageUrl: e.target.value }))
+              }
+            />
+            <span className="form-hint">
+              Leave empty for clean circular initials avatar, or paste a link/media URL.
+            </span>
+          </div>
+
+          <div className="form-group" style={{ marginTop: '1.25rem' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={teamFormData.isActive}
+                onChange={(e) =>
+                  setTeamFormData((prev) => ({ ...prev, isActive: e.target.checked }))
+                }
+                style={{ width: '18px', height: '18px' }}
+              />
+              <span style={{ fontWeight: 600 }}>Active (Visible on public Team & Home pages)</span>
+            </label>
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '2rem' }}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setIsTeamModalOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="primary"
+              isLoading={savingTeamMember}
+            >
+              {editingTeamMemberId ? 'Update Member' : 'Add Member'}
             </Button>
           </div>
         </form>

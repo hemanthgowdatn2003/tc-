@@ -1,7 +1,7 @@
-/* Admin Portal Styles - Clean & Simple */
+/* Admin Portal Styles - Light & Modern Aesthetic */
 .admin-container {
   min-height: 80vh;
-  padding: 6rem 0 4rem 0;
+  padding: 6.5rem 0 4rem 0;
 }
 
 .admin-login-wrap {
@@ -9,7 +9,7 @@
   margin: 3rem auto;
   background: var(--bg-card);
   border: 1px solid var(--border-medium);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow-md);
 }
@@ -42,6 +42,7 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .admin-profile {
@@ -61,6 +62,7 @@
   color: #ffffff;
   font-weight: 800;
   font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
 }
 
 /* Admin Stats Cards */
@@ -79,6 +81,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.admin-stat-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-medium);
 }
 
 .admin-stat-val {
@@ -135,9 +144,10 @@
 .admin-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 1.75rem;
   margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .admin-card-header {
@@ -169,16 +179,18 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
+  background: #f8fafc;
 }
 
 .admin-table td {
   padding: 0.9rem 0.85rem;
   border-bottom: 1px solid var(--border-subtle);
   vertical-align: middle;
+  color: var(--text-main);
 }
 
 .admin-table tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
+  background: #f8fafc;
 }
 
 .action-btns {
@@ -191,9 +203,9 @@
 .upload-dropzone {
   border: 2px dashed var(--border-medium);
   border-radius: var(--radius-md);
-  padding: 2rem 1.25rem;
+  padding: 2.25rem 1.25rem;
   text-align: center;
-  background: rgba(15, 23, 42, 0.4);
+  background: #f8fafc;
   cursor: pointer;
   transition: all var(--transition);
   margin-bottom: 1.5rem;
@@ -212,8 +224,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -223,15 +236,16 @@
 }
 
 .modal-content {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-md);
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
   width: 100%;
   max-width: 620px;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: var(--shadow-lg);
   padding: 2rem;
+  color: var(--text-main);
 }
 
 .modal-header {
@@ -250,11 +264,12 @@
   cursor: pointer;
   padding: 0.35rem;
   border-radius: var(--radius-sm);
+  transition: all var(--transition);
 }
 
 .modal-close-btn:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
+  background: #f1f5f9;
 }
 
 /* Features list builder */

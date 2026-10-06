@@ -9,6 +9,43 @@ const DATA_DIR = __dirname;
 const PACKAGES_FILE = path.join(DATA_DIR, 'packages.json');
 const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
 const INQUIRIES_FILE = path.join(DATA_DIR, 'inquiries.json');
+const TEAM_FILE = path.join(DATA_DIR, 'team.json');
+
+const DEFAULT_TEAM = [
+  {
+    id: 'team-naveen',
+    name: 'Naveen',
+    role: 'Video & Creative',
+    initials: 'N',
+    focusArea: 'Short-form video editing, visual pacing, and creative content.',
+    imageUrl: '',
+    isActive: true,
+    createdAt: '2026-01-15T09:00:00.000Z',
+    updatedAt: '2026-01-15T09:00:00.000Z'
+  },
+  {
+    id: 'team-nidhith',
+    name: 'Nidhith',
+    role: 'Social Media & Client Handling',
+    initials: 'NI',
+    focusArea: 'Social campaigns, client communication, and community management.',
+    imageUrl: '',
+    isActive: true,
+    createdAt: '2026-01-15T09:05:00.000Z',
+    updatedAt: '2026-01-15T09:05:00.000Z'
+  },
+  {
+    id: 'team-hemant',
+    name: 'Hemant',
+    role: 'Web Development',
+    initials: 'H',
+    focusArea: 'Responsive websites, performance tuning, and frontend engineering.',
+    imageUrl: '',
+    isActive: true,
+    createdAt: '2026-01-15T09:10:00.000Z',
+    updatedAt: '2026-01-15T09:10:00.000Z'
+  }
+];
 
 function readJsonFile(filePath, defaultValue) {
   try {
@@ -61,5 +98,11 @@ export const db = {
   },
   saveInquiries(inquiries) {
     writeJsonFile(INQUIRIES_FILE, inquiries);
+  },
+  getTeamMembers() {
+    return readJsonFile(TEAM_FILE, DEFAULT_TEAM);
+  },
+  saveTeamMembers(team) {
+    writeJsonFile(TEAM_FILE, team);
   },
 };

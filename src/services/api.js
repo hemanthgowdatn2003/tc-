@@ -136,4 +136,35 @@ export const api = {
       body: JSON.stringify(settingsData),
     });
   },
+
+  // Team
+  async getTeam() {
+    const res = await request('/team');
+    return res.team || [];
+  },
+
+  async adminGetTeam() {
+    const res = await request('/admin/team');
+    return res.team || [];
+  },
+
+  async adminCreateTeamMember(memberData) {
+    return await request('/admin/team', {
+      method: 'POST',
+      body: JSON.stringify(memberData),
+    });
+  },
+
+  async adminUpdateTeamMember(id, memberData) {
+    return await request(`/admin/team/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(memberData),
+    });
+  },
+
+  async adminDeleteTeamMember(id) {
+    return await request(`/admin/team/${id}`, {
+      method: 'DELETE',
+    });
+  },
 };

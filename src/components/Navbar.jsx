@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import '../styles/navbar.css';
 
 export default function Navbar() {
@@ -64,26 +64,8 @@ export default function Navbar() {
                 </li>
               );
             })}
-
-            {/* Mobile Actions Drawer Content - No admin link */}
-            <div className="mobile-actions">
-              <Link
-                to="/contact"
-                className="btn btn-primary"
-                onClick={handleLinkClick}
-              >
-                Get in Touch <ArrowUpRight size={16} />
-              </Link>
-            </div>
           </ul>
         </nav>
-
-        {/* Desktop Right CTA - No admin link shown */}
-        <div className="nav-actions">
-          <Link to="/contact" className="btn btn-primary btn-sm">
-            Start Project <ArrowUpRight size={15} />
-          </Link>
-        </div>
 
         {/* Mobile Hamburger Button */}
         <button

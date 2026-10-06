@@ -19,8 +19,33 @@ import Button from '../components/Button';
 import { api } from '../services/api';
 import '../styles/home.css';
 
+const DEFAULT_TEAM = [
+  {
+    id: 'team-naveen',
+    name: 'Naveen',
+    role: 'Video & Creative',
+    initials: 'N',
+    focusArea: 'Short-form video editing, visual storytelling, and creative content.',
+  },
+  {
+    id: 'team-nidhith',
+    name: 'Nidhith',
+    role: 'Social Media & Client Handling',
+    initials: 'NI',
+    focusArea: 'Social campaigns, client communication, and community management.',
+  },
+  {
+    id: 'team-hemant',
+    name: 'Hemant',
+    role: 'Web Development',
+    initials: 'H',
+    focusArea: 'Responsive websites, performance tuning, and frontend engineering.',
+  },
+];
+
 export default function Home() {
   const [packages, setPackages] = useState([]);
+  const [teamMembers, setTeamMembers] = useState(DEFAULT_TEAM);
   const [settings, setSettings] = useState({ instagramUrl: '' });
   const [loadingPackages, setLoadingPackages] = useState(true);
 
@@ -29,10 +54,14 @@ export default function Home() {
     Promise.all([
       api.getPackages().catch(() => []),
       api.getSettings().catch(() => ({ instagramUrl: '' })),
-    ]).then(([pkgs, siteSettings]) => {
+      api.getTeam().catch(() => []),
+    ]).then(([pkgs, siteSettings, liveTeam]) => {
       if (isMounted) {
         setPackages(pkgs);
         setSettings(siteSettings);
+        if (Array.isArray(liveTeam) && liveTeam.length > 0) {
+          setTeamMembers(liveTeam);
+        }
         setLoadingPackages(false);
       }
     });
@@ -105,27 +134,6 @@ export default function Home() {
       number: '05',
       title: 'Launch & Support',
       desc: 'Deliver final files and provide agreed post-launch support.',
-    },
-  ];
-
-  const teamMembers = [
-    {
-      name: 'Naveen',
-      role: 'Video & Creative',
-      initials: 'N',
-      focusArea: 'Short-form video editing, visual storytelling, and creative content.',
-    },
-    {
-      name: 'Nidhith',
-      role: 'Social Media & Client Handling',
-      initials: 'NI',
-      focusArea: 'Social campaigns, client communication, and community management.',
-    },
-    {
-      name: 'Hemant',
-      role: 'Web Development',
-      initials: 'H',
-      focusArea: 'Responsive websites, performance tuning, and frontend engineering.',
     },
   ];
 
@@ -331,11 +339,12 @@ export default function Home() {
           <div className="team-grid">
             {teamMembers.map((member) => (
               <TeamMember
-                key={member.name}
+                key={member.id || member.name}
                 name={member.name}
                 role={member.role}
                 initials={member.initials}
                 focusArea={member.focusArea}
+                imageSrc={member.imageUrl}
               />
             ))}
           </div>

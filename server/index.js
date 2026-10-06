@@ -12,6 +12,7 @@ import adminRoutes from './routes/adminRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
+import teamRoutes from './routes/teamRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -114,6 +115,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/admin', uploadRoutes);
 app.use('/api/contact', contactLimiter, contactRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/team', teamRoutes);
 
 // 404 handler for unknown API routes
 app.use('/api/*', (req, res) => {

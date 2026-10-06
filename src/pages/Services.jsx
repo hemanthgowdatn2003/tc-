@@ -164,7 +164,7 @@ export default function Services() {
                 {/* Deliverables List */}
                 <div
                   style={{
-                    background: '#0d1320',
+                    background: 'var(--bg-surface)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-md)',
                     padding: '1.5rem',

@@ -113,6 +113,67 @@ describe('TC Web & Studio API Tests', () => {
     assert.strictEqual(data.success, true);
   });
 
+  let createdTeamMemberId = '';
+
+  it('GET /api/team returns active team members', async () => {
+    const res = await fetch(`${BASE_URL}/api/team`);
+    assert.strictEqual(res.status, 200);
+    const data = await res.json();
+    assert.strictEqual(data.success, true);
+    assert.ok(Array.isArray(data.team));
+    assert.ok(data.team.length >= 3);
+  });
+
+  it('POST /api/admin/team creates a new team member', async () => {
+    const res = await fetch(`${BASE_URL}/api/admin/team`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: sessionCookie,
+      },
+      body: JSON.stringify({
+        name: 'Samantha Ray',
+        role: 'Brand Strategist',
+        initials: 'SR',
+        focusArea: 'Brand voice, visual guidelines, and corporate storytelling.',
+        isActive: true,
+      }),
+    });
+    assert.strictEqual(res.status, 201);
+    const data = await res.json();
+    assert.strictEqual(data.success, true);
+    assert.ok(data.member.id);
+    assert.strictEqual(data.member.name, 'Samantha Ray');
+    createdTeamMemberId = data.member.id;
+  });
+
+  it('PUT /api/admin/team/:id updates a team member', async () => {
+    const res = await fetch(`${BASE_URL}/api/admin/team/${createdTeamMemberId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: sessionCookie,
+      },
+      body: JSON.stringify({
+        role: 'Senior Brand Strategist',
+      }),
+    });
+    assert.strictEqual(res.status, 200);
+    const data = await res.json();
+    assert.strictEqual(data.success, true);
+    assert.strictEqual(data.member.role, 'Senior Brand Strategist');
+  });
+
+  it('DELETE /api/admin/team/:id removes the team member', async () => {
+    const res = await fetch(`${BASE_URL}/api/admin/team/${createdTeamMemberId}`, {
+      method: 'DELETE',
+      headers: { Cookie: sessionCookie },
+    });
+    assert.strictEqual(res.status, 200);
+    const data = await res.json();
+    assert.strictEqual(data.success, true);
+  });
+
   it('POST /api/contact validates missing fields', async () => {
     const res = await fetch(`${BASE_URL}/api/contact`, {
       method: 'POST',

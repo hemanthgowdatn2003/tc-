@@ -1,4 +1,4 @@
-/* Contact Page Styles - Clean & Simple */
+/* Contact Page Styles - Clean & Light Aesthetic */
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -22,8 +22,9 @@
 .contact-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .contact-item {
@@ -68,15 +69,17 @@
 .contact-instagram-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .contact-form-panel {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 2.25rem;
+  box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 600px) {
