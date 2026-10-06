@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
 import { api } from '../services/api';
+import '../styles/footer.css';
 
 export default function Footer() {
   const [settings, setSettings] = useState({
@@ -29,69 +30,23 @@ export default function Footer() {
   const hasInstagram = Boolean(settings.instagramUrl && settings.instagramUrl.trim());
 
   return (
-    <footer
-      style={{
-        background: '#f1f5f9',
-        borderTop: '1px solid var(--border-subtle)',
-        padding: '4rem 0 2rem 0',
-        marginTop: 'auto',
-      }}
-    >
+    <footer className="site-footer">
       <div className="container">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '2.5rem',
-            marginBottom: '3rem',
-          }}
-        >
+        <div className="footer-grid">
           {/* Col 1: Brand Info */}
           <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.65rem',
-                marginBottom: '1rem',
-              }}
-            >
-              <div
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  background: 'var(--accent-primary)',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ffffff',
-                  fontWeight: 800,
-                  fontSize: '0.95rem',
-                }}
-              >
-                TC
-              </div>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                }}
-              >
-                TC Web & Studio
-              </span>
-            </div>
-            <p
-              style={{
-                fontSize: '0.9rem',
-                lineHeight: 1.6,
-                color: 'var(--text-muted)',
-                marginBottom: '1.25rem',
-              }}
-            >
-              Creative digital agency for websites, social media, and video editing.
+            <Link to="/" className="footer-brand-title">
+              <div className="footer-brand-icon">TC</div>
+              <span className="footer-brand-name">TC Web & Studio</span>
+            </Link>
+            <p className="footer-brand-desc">
+              Creative digital agency specializing in high-performance web development,
+              social media operations, and short-form video editing.
             </p>
+            <div className="footer-location-tag">
+              <MapPin size={14} />
+              <span>Mysore, Karnataka, India</span>
+            </div>
 
             {/* Instagram Link Section */}
             <div>
@@ -112,7 +67,7 @@ export default function Footer() {
                     alignItems: 'center',
                     gap: '0.45rem',
                     padding: '0.35rem 0.75rem',
-                    background: 'rgba(255, 255, 255, 0.04)',
+                    background: 'var(--bg-surface)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-sm)',
                     fontSize: '0.8rem',
@@ -127,155 +82,87 @@ export default function Footer() {
 
           {/* Col 2: Navigation Links */}
           <div>
-            <h4
-              style={{
-                fontSize: '0.95rem',
-                marginBottom: '1rem',
-                color: 'var(--text-main)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-              }}
-            >
-              Navigation
-            </h4>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.65rem',
-                fontSize: '0.9rem',
-              }}
-            >
+            <h4 className="footer-heading">Navigation</h4>
+            <ul className="footer-links-list">
               <li>
-                <Link to="/" style={{ color: 'var(--text-muted)' }}>
-                  Home
-                </Link>
+                <Link to="/" className="footer-link-item">Home</Link>
               </li>
               <li>
-                <Link to="/services" style={{ color: 'var(--text-muted)' }}>
-                  Services
-                </Link>
+                <Link to="/services" className="footer-link-item">Services</Link>
               </li>
               <li>
-                <Link to="/packages" style={{ color: 'var(--text-muted)' }}>
-                  Packages
-                </Link>
+                <Link to="/packages" className="footer-link-item">Packages</Link>
               </li>
               <li>
-                <a href="/#approach" style={{ color: 'var(--text-muted)' }}>
-                  Our Approach
-                </a>
+                <a href="/#approach" className="footer-link-item">Our Approach</a>
               </li>
               <li>
-                <Link to="/team" style={{ color: 'var(--text-muted)' }}>
-                  Team
-                </Link>
+                <Link to="/team" className="footer-link-item">Team</Link>
               </li>
               <li>
-                <Link to="/contact" style={{ color: 'var(--text-muted)' }}>
-                  Contact
-                </Link>
+                <Link to="/contact" className="footer-link-item">Contact</Link>
               </li>
             </ul>
           </div>
 
           {/* Col 3: Services Offered */}
           <div>
-            <h4
-              style={{
-                fontSize: '0.95rem',
-                marginBottom: '1rem',
-                color: 'var(--text-main)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-              }}
-            >
-              Services
-            </h4>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.65rem',
-                fontSize: '0.9rem',
-                color: 'var(--text-muted)',
-              }}
-            >
-              <li>Website Development</li>
-              <li>Social Media Management</li>
-              <li>Instagram Management</li>
-              <li>Video Editing & Content</li>
-              <li>Branding & Digital Design</li>
+            <h4 className="footer-heading">Services</h4>
+            <ul className="footer-links-list">
+              <li>
+                <Link to="/services#web-development" className="footer-link-item">Website Development</Link>
+              </li>
+              <li>
+                <Link to="/services#social-media" className="footer-link-item">Social Media Management</Link>
+              </li>
+              <li>
+                <Link to="/services#instagram-management" className="footer-link-item">Instagram Management</Link>
+              </li>
+              <li>
+                <Link to="/services#video-editing" className="footer-link-item">Video Editing & Reels</Link>
+              </li>
+              <li>
+                <Link to="/services#branding-creative" className="footer-link-item">Branding & Creative</Link>
+              </li>
             </ul>
           </div>
 
           {/* Col 4: Contact */}
           <div>
-            <h4
-              style={{
-                fontSize: '0.95rem',
-                marginBottom: '1rem',
-                color: 'var(--text-main)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-              }}
-            >
-              Contact
-            </h4>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-                fontSize: '0.9rem',
-              }}
-            >
+            <h4 className="footer-heading">Contact</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div className="footer-contact-item">
+                <MapPin size={15} />
+                <span>Mysore, Karnataka, India</span>
+              </div>
               {settings.contactEmail && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Mail size={15} style={{ color: 'var(--accent-primary)' }} />
-                  <a
-                    href={`mailto:${settings.contactEmail}`}
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    {settings.contactEmail}
-                  </a>
-                </div>
+                <a
+                  href={`mailto:${settings.contactEmail}`}
+                  className="footer-contact-item"
+                >
+                  <Mail size={15} />
+                  <span>{settings.contactEmail}</span>
+                </a>
               )}
               {settings.contactPhone && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Phone size={15} style={{ color: 'var(--accent-primary)' }} />
-                  <a
-                    href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`}
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    {settings.contactPhone}
-                  </a>
-                </div>
+                <a
+                  href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`}
+                  className="footer-contact-item"
+                >
+                  <Phone size={15} />
+                  <span>{settings.contactPhone}</span>
+                </a>
               )}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar - Clean copyright, no admin link */}
-        <div
-          style={{
-            borderTop: '1px solid var(--border-subtle)',
-            paddingTop: '1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-            fontSize: '0.825rem',
-            color: 'var(--text-faint)',
-          }}
-        >
+        {/* Bottom Bar */}
+        <div className="footer-bottom-bar">
           <div>
             &copy; {new Date().getFullYear()} TC Web & Studio. All rights reserved.
           </div>
-          <div>Simple, reliable digital solutions.</div>
+          <div>Mysore, Karnataka &bull; Modern Creative Digital Agency</div>
         </div>
       </div>
     </footer>

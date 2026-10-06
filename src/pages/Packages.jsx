@@ -49,7 +49,7 @@ export default function Packages() {
   };
 
   return (
-    <div className="packages-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
+    <div className="packages-page">
       <div className="container">
         {/* Header */}
         <div className="section-header">

@@ -56,7 +56,7 @@ export default function Team() {
   }, []);
 
   return (
-    <div className="team-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
+    <div className="team-page">
       <div className="container">
         {/* Header */}
         <div className="section-header">

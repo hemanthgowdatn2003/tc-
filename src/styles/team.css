@@ -1,8 +1,13 @@
-/* Team Styles - Light & Modern Clean Aesthetic */
+/* Team Styles - Mobile-First & Responsive */
+.team-page {
+  padding-top: calc(clamp(5.25rem, 11vh, 7.5rem) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(clamp(3rem, 6vh, 5rem) + env(safe-area-inset-bottom, 0px));
+}
+
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.25rem, 3vw, 1.85rem);
   max-width: 980px;
   margin: 0 auto;
 }
@@ -11,13 +16,14 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 2.25rem 1.75rem;
+  padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
   text-align: center;
   transition: all var(--transition);
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: var(--shadow-sm);
+  width: 100%;
 }
 
 .team-card:hover {
@@ -36,16 +42,17 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent-primary);
   margin-bottom: 1.25rem;
   object-fit: cover;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  flex-shrink: 0;
 }
 
 .team-name {
-  font-size: 1.3rem;
+  font-size: clamp(1.15rem, 3vw, 1.35rem);
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 0.35rem;

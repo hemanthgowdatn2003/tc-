@@ -8,6 +8,7 @@ import {
   AlertCircle,
   Clock,
   ExternalLink,
+  MapPin,
 } from 'lucide-react';
 import InstagramIcon from '../components/InstagramIcon';
 import Button from '../components/Button';
@@ -122,7 +123,7 @@ export default function Contact() {
   const hasInstagram = Boolean(settings.instagramUrl && settings.instagramUrl.trim());
 
   return (
-    <div className="contact-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
+    <div className="contact-page">
       <div className="container">
         {/* Header */}
         <div className="section-header">
@@ -140,6 +141,18 @@ export default function Contact() {
               <h3 style={{ fontSize: '1.2rem', marginBottom: '1.25rem' }}>
                 Direct Contact
               </h3>
+
+              <div className="contact-item">
+                <div className="contact-item-icon">
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <div className="contact-item-label">Location</div>
+                  <div className="contact-item-val">
+                    Mysore, Karnataka, India
+                  </div>
+                </div>
+              </div>
 
               {settings.contactEmail && (
                 <div className="contact-item">

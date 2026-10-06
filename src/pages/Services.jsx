@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import InstagramIcon from '../components/InstagramIcon';
 import Button from '../components/Button';
+import '../styles/services.css';
 
 export default function Services() {
   const serviceDetails = [
@@ -91,7 +92,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="services-page" style={{ paddingTop: '6.5rem', paddingBottom: '4.5rem' }}>
+    <div className="services-page">
       <div className="container">
         {/* Header */}
         <div className="section-header">
@@ -103,7 +104,7 @@ export default function Services() {
         </div>
 
         {/* Concise Service Cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '4rem' }}>
+        <div className="services-detail-list">
           {serviceDetails.map((service) => {
             const IconComponent = service.icon;
 
@@ -111,43 +112,22 @@ export default function Services() {
               <div
                 key={service.id}
                 id={service.id}
-                className="glass-card"
-                style={{
-                  padding: '2rem 2.25rem',
-                  display: 'grid',
-                  gridTemplateColumns: '1.2fr 1fr',
-                  gap: '2.5rem',
-                  alignItems: 'center',
-                }}
+                className="service-detail-card"
               >
                 <div>
-                  <div
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      padding: '0.25rem 0.65rem',
-                      background: 'var(--accent-light)',
-                      border: '1px solid var(--accent-border)',
-                      borderRadius: 'var(--radius-full)',
-                      color: 'var(--accent-primary)',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      marginBottom: '0.75rem',
-                    }}
-                  >
+                  <div className="service-detail-badge">
                     <IconComponent size={13} />
                     <span>{service.badge}</span>
                   </div>
 
-                  <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+                  <h2 className="service-detail-title">
                     {service.title}
                   </h2>
-                  <p style={{ lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                  <p className="service-detail-desc">
                     {service.description}
                   </p>
 
-                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <div className="service-detail-actions">
                     <Link to={`/contact?service=${encodeURIComponent(service.title)}`}>
                       <Button variant="primary" size="sm">
                         Request Quote <ArrowUpRight size={14} />
@@ -162,55 +142,15 @@ export default function Services() {
                 </div>
 
                 {/* Deliverables List */}
-                <div
-                  style={{
-                    background: 'var(--bg-surface)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '1.5rem',
-                  }}
-                >
-                  <h4
-                    style={{
-                      fontSize: '0.9rem',
-                      marginBottom: '0.85rem',
-                      color: 'var(--text-main)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
-                    }}
-                  >
+                <div className="service-deliverables-box">
+                  <h4 className="service-deliverables-heading">
                     <Layers size={14} style={{ color: 'var(--accent-primary)' }} />
                     Deliverables
                   </h4>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.55rem',
-                    }}
-                  >
+                  <ul className="service-deliverables-list">
                     {service.deliverables.map((item, dIdx) => (
-                      <li
-                        key={dIdx}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          fontSize: '0.875rem',
-                          color: 'var(--text-muted)',
-                        }}
-                      >
-                        <CheckCircle
-                          size={14}
-                          style={{
-                            color: 'var(--accent-primary)',
-                            flexShrink: 0,
-                          }}
-                        />
+                      <li key={dIdx} className="service-deliverables-item">
+                        <CheckCircle size={14} />
                         <span>{item}</span>
                       </li>
                     ))}

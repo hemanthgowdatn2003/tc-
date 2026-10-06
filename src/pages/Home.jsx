@@ -149,7 +149,9 @@ export default function Home() {
               <Sparkles size={14} /> Creative Digital Services
             </div>
             <h1 className="hero-headline animate-fade-in">
-              Digital Solutions That <span className="accent-text">Grow Your Business</span>
+              <span className="hero-word-wrap">Digital Solutions</span>{' '}
+              <span className="hero-word-wrap">That Grow Your</span>{' '}
+              <span className="hero-word-wrap accent-text">Business</span>
             </h1>
             <p className="hero-description animate-fade-in">
               We build fast websites, manage social channels, and produce engaging videos
@@ -157,13 +159,13 @@ export default function Home() {
             </p>
 
             <div className="hero-cta-group animate-fade-in">
-              <Link to="/services">
-                <Button variant="primary" size="lg">
+              <Link to="/services" className="hero-cta-link">
+                <Button variant="primary" size="lg" className="hero-btn">
                   Explore Services <ArrowRight size={16} />
                 </Button>
               </Link>
-              <Link to="/packages">
-                <Button variant="outline" size="lg">
+              <Link to="/packages" className="hero-cta-link">
+                <Button variant="outline" size="lg" className="hero-btn">
                   View Packages <ArrowUpRight size={16} />
                 </Button>
               </Link>
@@ -176,16 +178,16 @@ export default function Home() {
                 <div className="metric-label">Client Focused</div>
               </div>
               <div className="metric-item">
-                <div className="metric-value">5</div>
+                <div className="metric-value">5+</div>
                 <div className="metric-label">Core Services</div>
               </div>
               <div className="metric-item">
-                <div className="metric-value">Fast</div>
-                <div className="metric-label">Turnaround</div>
+                <div className="metric-value">Mysore</div>
+                <div className="metric-label">Karnataka, India</div>
               </div>
               <div className="metric-item">
                 <div className="metric-value">Direct</div>
-                <div className="metric-label">Communication</div>
+                <div className="metric-label">Client Support</div>
               </div>
             </div>
           </div>
