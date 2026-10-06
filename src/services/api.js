@@ -1,3 +1,5 @@
+import { FALLBACK_PACKAGES, FALLBACK_TEAM, FALLBACK_SETTINGS } from '../data/fallbackData';
+
 const API_BASE = '/api';
 
 async function request(endpoint, options = {}) {
@@ -31,18 +33,34 @@ async function request(endpoint, options = {}) {
 export const api = {
   // Public
   async getPackages() {
-    const res = await request('/packages');
-    return res.packages || [];
+    try {
+      const res = await request('/packages');
+      if (Array.isArray(res.packages) && res.packages.length > 0) {
+        return res.packages;
+      }
+      return FALLBACK_PACKAGES;
+    } catch {
+      return FALLBACK_PACKAGES;
+    }
   },
 
   async getPackageById(id) {
-    const res = await request(`/packages/${id}`);
-    return res.package;
+    try {
+      const res = await request(`/packages/${id}`);
+      if (res.package) return res.package;
+      return FALLBACK_PACKAGES.find((p) => p.id === id) || null;
+    } catch {
+      return FALLBACK_PACKAGES.find((p) => p.id === id) || null;
+    }
   },
 
   async getSettings() {
-    const res = await request('/settings');
-    return res.settings;
+    try {
+      const res = await request('/settings');
+      return res.settings || FALLBACK_SETTINGS;
+    } catch {
+      return FALLBACK_SETTINGS;
+    }
   },
 
   async submitContact(formData) {
@@ -139,8 +157,15 @@ export const api = {
 
   // Team
   async getTeam() {
-    const res = await request('/team');
-    return res.team || [];
+    try {
+      const res = await request('/team');
+      if (Array.isArray(res.team) && res.team.length > 0) {
+        return res.team;
+      }
+      return FALLBACK_TEAM;
+    } catch {
+      return FALLBACK_TEAM;
+    }
   },
 
   async adminGetTeam() {
